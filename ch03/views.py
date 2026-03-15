@@ -5,23 +5,25 @@ from pydantic import BaseModel, Field, field_validator
 
 ch03 = APIRouter(prefix="/ch03", tags=["请求体传参"])
 
-
+# 定义一个地址类
 class Addr(BaseModel):
     province: str = Field(description="省份")
     city: str = Field(description="城市")
     district: str = Field(description="区县")
 
-
+# 定义一个员工类（BaseModel: 定义一个数据模型类，用于表示请求体中的数据）
 class Emp(BaseModel):
     name: str = Field(description="员工的姓名")
     age: int = Field(description="员工的年龄", ge=18, lt=60)
     birth: date = Field(description="员工的出生日期", default=None)
     addr: Addr = Field(description="员工的地址", default=None)
 
-    @field_validator('name')  # 自定义一个复杂的校验器，校验员工姓名是否满足特定的规则
+    # 自定义一个复杂的校验器，校验员工姓名是否满足特定的规则
+    @field_validator('name')
     def validate_name(cls, value):
         import re
         result = re.match(r'^[a-zA-Z_]\w{4,9}$', value)
+        # 断言：如果result为None，说明校验失败，抛出异常；如果result不为None，说明校验成功，继续执行后续代码
         assert not result is None
         return value
 
