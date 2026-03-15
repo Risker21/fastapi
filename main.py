@@ -1,5 +1,7 @@
 from fastapi import FastAPI
 from starlette.staticfiles import StaticFiles
+
+from ch03.views import ch03
 from shopping_app.views.cart_views import shop
 from ch01.views.views import ch01
 from ch02.views.views import ch02
@@ -13,6 +15,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(shop)
 app.include_router(ch01)
 app.include_router(ch02)
+app.include_router(ch03)
 
 
 @app.get("/")
