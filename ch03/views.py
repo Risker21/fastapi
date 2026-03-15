@@ -31,4 +31,3 @@ def find_all_emp(emp: Emp):
     print(f'所有员工信息：{emp}')
     return {"message": "OK"}
 
-
