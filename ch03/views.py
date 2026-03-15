@@ -1,7 +1,7 @@
 from datetime import date
-
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 from pydantic import BaseModel, Field, field_validator
+from pygments.lexer import default
 
 ch03 = APIRouter(prefix="/ch03", tags=["请求体传参"])
 
@@ -27,9 +27,21 @@ class Emp(BaseModel):
         assert not result is None
         return value
 
-
 @ch03.post("/emp", summary="添加员工", description="传入员工信息")
 def find_all_emp(emp: Emp):
     print(f'所有员工信息：{emp}')
     return {"message": "OK"}
 
+
+
+'''
+请求体传参
+{
+"name": "zhangsan",}
+  "age": 20,
+'''
+@ch03.post("/test",summary="测试员工信息", description="测试接口")
+def test(name:str  = Body(default=None,description="测试的名字"),
+         age:int = Body(default=18,description="测试的年龄")):
+    print(f'测试人信息 = {name}：{age}')
+    return {"message": "OK"}
