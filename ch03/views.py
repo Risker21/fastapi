@@ -35,7 +35,7 @@ def find_all_emp(emp: Emp):
 
 
 '''
-请求体传参
+请求体传参（json格式数据）
 {
 "name": "zhangsan",}
   "age": 20,
