@@ -9,7 +9,6 @@ engine = create_engine("mysql+pymysql://root:Wordl9543@localhost:3306/fastapi_db
 
 # 定义一个模型类的基类
 class Base(DeclarativeBase):
-    pass
 # 所有的模型类，都有的属性和字段映射
     create_time: Mapped[datetime] = mapped_column(DateTime,insert_default=func.now(),comment="记录创建时间")
     update_time: Mapped[datetime] = mapped_column(DateTime,insert_default=func.now(),onupdate=func.now(),comment="记录最后一次修改时间")
