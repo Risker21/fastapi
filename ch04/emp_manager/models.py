@@ -22,10 +22,11 @@ class Employee(Base):
     
     
 if __name__ == '__main__':
-    # 所有的表都重新创建表
+    # 所有的表都重新创建（删除）表
     Base.metadata.create_all(engine)
-    # Base.drop_all(engine)
+    # Base.metadata.drop_all(engine)
 
-#     Employee.__table__.create(engine)
-#     Employee.__table__.drop(engine)
+    # 单独把某个表创建（删除）表
+    # Employee.__table__.create(engine)
+    # Employee.__table__.drop(engine)
 
